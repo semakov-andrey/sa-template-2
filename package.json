@@ -1,0 +1,16 @@
+{
+  "name": "sa-template-2",
+  "version": "1.0.0",
+  "description": "sa-template-2",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:semakov_andrey/sa-template-2.git"
+  },
+  "author": "Semakov Andrey",
+  "license": "ISC",
+  "scripts": {
+    "start": "",
+    "build": ""
+  }
+}
