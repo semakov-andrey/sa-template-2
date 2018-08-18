@@ -12,5 +12,6 @@ module.exports = merge(common, {
     filename: 'scripts/main.js', 
     path: path.resolve(__dirname, dirs.production),
     publicPath: '/'
-  }
+  },
+  devtool: false
 });
