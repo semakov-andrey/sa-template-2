@@ -1,7 +1,6 @@
 'use strict';
 
 const packageJSON           = require('./package.json');
-const webpack               = require('webpack');
 const path                  = require('path');
 const glob                  = require('glob');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
@@ -49,9 +48,6 @@ module.exports = {
     }]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      markup: JSON.stringify(glob.sync(path.resolve(__dirname, dirs.source, '*.pug')).map(file => path.basename(file)))
-    }),
     new MiniCssExtractPlugin({
       filename: 'styles/main.css'
     })
