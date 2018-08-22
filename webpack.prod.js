@@ -7,7 +7,10 @@ const path                  = require('path');
 const PostCSSAssetsPlugin   = require('postcss-assets-webpack-plugin');
 const autoprefixer          = require('autoprefixer');
 const cssnano               = require('cssnano');
+const del                   = require('del');
 const dirs                  = packageJSON.config.directories;
+
+del.sync(path.resolve(__dirname, dirs.production));
 
 module.exports = merge(common, {
   mode: 'production',

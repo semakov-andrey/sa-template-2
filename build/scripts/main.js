@@ -116,7 +116,7 @@ module.exports = __webpack_require__.p + "index.html";
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "home.html";
+module.exports = __webpack_require__.p + "page.html";
 
 /***/ }),
 /* 4 */

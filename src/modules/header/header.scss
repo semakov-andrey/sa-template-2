@@ -1,0 +1,10 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  height: 100px;
+  border-bottom: 2px dashed blue;
+  font: bold 20px/30px 'Open Sans', Arial, Helvetica, sans-serif;
+}

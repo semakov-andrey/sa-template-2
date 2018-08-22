@@ -1,10 +1,12 @@
-doctype html
-html
-  head
-    title Title
-    base(href=base)
-    meta(charset='utf-8')
-    link(href="styles/main.css" rel="stylesheet")
-    script(src="scripts/main.js" defer)
-  body
-    h1 this is body
+extends modules/layout/layout.pug
+
+block page
+  main.main
+    h1 Fusce nisl neque
+    p Curabitur sagittis rutrum purus, sit amet fermentum nisi auctor in. Nunc consequat posuere velit hendrerit dignissim. Morbi rutrum semper nibh in cursus. Fusce mattis magna tellus, vitae semper orci ornare ac. Morbi in convallis nulla. Integer lorem ante, fringilla sit amet diam a, fringilla fermentum erat. Nullam quam orci, tincidunt in dolor et, placerat aliquam leo. Morbi aliquet a velit ac tempor. Fusce ac quam ac nisl hendrerit euismod. Aenean turpis dolor, tempus sed quam eu, rhoncus mollis nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    p Cras eget convallis nulla. Sed quis venenatis lorem. Nullam blandit lacinia leo nec viverra. Ut bibendum sed dolor a vestibulum. Donec sed lectus malesuada, egestas neque vitae, tincidunt est. In egestas leo commodo augue tempor, sed auctor nisl venenatis. Praesent nec dapibus augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam ac dolor hendrerit, vehicula sem sit amet, ultrices massa. Morbi nec lectus vel diam molestie aliquam finibus quis neque. Fusce nisl neque, lobortis vel odio in, tempus varius urna. Sed eu tortor in justo cursus vulputate in eu ex. Suspendisse a dignissim tortor.
+    div: a(href="/page.html") Sliquet a velit »
+    .icons
+      +icon('52', 'icon-52')
+      +icon('73', 'icon-73')
+      +icon('25', 'icon-25')
