@@ -1,9 +1,1 @@
-body {
-  color: black; }
-
-body {
-  color: green; }
-
-body {
-  color: red; }
-
+body{color:#000;color:green;color:red}table{-moz-appearance:none;-ms-hyphens:auto;-webkit-appearance:none;-webkit-hyphens:auto;appearance:none;box-shadow:none;box-sizing:border-box;display:flex;hyphens:auto;text-overflow:ellipsis}p{display:grid;grid-row:1/2}

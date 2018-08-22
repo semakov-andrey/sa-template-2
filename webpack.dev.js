@@ -12,5 +12,16 @@ module.exports = merge(common, {
     filename: 'scripts/main.js', 
     path: path.resolve(__dirname, dirs.development),
     publicPath: '/'
-  }
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, dirs.development),
+    compress: true,
+    host: packageJSON.config.devServer.host,
+    port: packageJSON.config.devServer.port,
+    stats: 'minimal',
+    historyApiFallback: {
+      index: '/main.html'
+    }
+  },
+  devtool: 'source-map'
 });

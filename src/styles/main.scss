@@ -4,3 +4,17 @@
 body {
   color: red;
 }
+
+table {
+  display: flex;
+  box-shadow: none;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  hyphens: auto;
+  appearance: none;
+}
+
+p {
+  display: grid;
+  grid-row: 1 / 2;
+}
