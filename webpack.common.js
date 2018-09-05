@@ -50,11 +50,25 @@ module.exports = {
           }
         }
       ]
+    }, {
+      test: /\.ttf$/,
+      use: [{
+        loader: 'ttf2woff2-loader',
+        options: {
+          publicPath: '/fonts'
+        }
+      }]
     }]
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles/main.css'
     })
-  ]
+  ],
+  resolveLoader: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'loaders')
+    ]
+  }
 };

@@ -31,6 +31,9 @@ module.exports = merge(common, {
               discardComments: {
                 removeAll: true,
               },
+              minifyFontValues: {
+                removeQuotes: false
+              }
             }]
           })
         ],
