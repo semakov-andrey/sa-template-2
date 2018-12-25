@@ -1,0 +1,20 @@
+include ../icon/icon
+include ../header/header
+include ../footer/footer
+
+doctype html
+html(lang='ru')
+	head
+		title Template
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width,initial-scale=1')
+		meta(name='description' content='Template')
+		meta(name='keywords' content='Template')
+		link(href='raster/favicon.png' rel='icon')
+		link(href='styles/main.css' rel='stylesheet')
+		script(src='scripts/main.js' defer)
+	body
+		.hidden-svg#hidden-svg(data-path="images/sprite.svg")
+		+header
+		block page
+		+footer
