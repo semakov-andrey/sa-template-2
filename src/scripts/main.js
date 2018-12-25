@@ -1,5 +1,9 @@
 'use strict';
 
+require.context('../pages');
+require.context('../images/svg');
+import '../styles/main.scss';
+
 import '@babel/polyfill';
 import Icon             from '../modules/icon/icon';
 import Preloader        from '../modules/preloader/preloader';

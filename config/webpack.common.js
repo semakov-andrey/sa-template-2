@@ -2,6 +2,8 @@
 
 const packageJSON           = require('../package.json');
 const path                  = require('path');
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
+const SpriteLoaderPlugin    = require('svg-sprite-loader/plugin');
 const root                  = path.resolve(__dirname, '..');
 const dirs                  = packageJSON.config.directories;
 const entries               = packageJSON.config.entries;
@@ -10,68 +12,74 @@ Object.keys(entries).forEach(key => entries[key] = path.resolve(root, dirs.sourc
 
 module.exports = {
   entry: entries,
-  module: {}
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }]
+    }, {
+      test: /\.pug$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].html'
+        }
+      },
+        'extract-loader',
+        'html-loader',
+      {
+        loader: 'pug-html-loader',
+        options: {
+          pretty: true,
+          data: {
+            base: '/'
+          }
+        }
+      }]
+    }, {
+      test: /\.scss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'expanded'
+          }
+        }
+      ]
+    }, {
+      test: /\.(woff|woff2|ttf|otf)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]'
+        }
+      }]
+    }, {
+      test: /content\\.*\.(jpg|png|gif|svg|mp4)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]'
+        }
+      }]
+    }, {
+      test: /svg\\.*\.svg$/,
+      loader: 'svg-sprite-loader',
+      options: {
+        extract: true,
+        spriteFilename: 'images/sprite.svg'
+      }
+    }]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: 'styles/[name].css' }),
+    new SpriteLoaderPlugin()
+  ]
 };
-
-
-// rules: [{
-//   test: /\.js$/,
-//   exclude: /node_modules/,
-//   loader: 'babel-loader',
-//   options: {
-//     presets: ['env'],
-//     plugins: ['transform-object-rest-spread']
-//   }
-// }, {
-//   test: /\.pug$/,
-//   use: [{
-//     loader: 'file-loader',
-//     options: {
-//       name: '[name].html'
-//     }
-//   },
-//     'extract-loader',
-//     'html-loader',
-//   {
-//     loader: 'pug-html-loader',
-//     options: {
-//       pretty: true,
-//       data: {
-//         base: '/'
-//       }
-//     }
-//   }]      
-// }, {
-//   test: /\.scss$/,
-//   use: [
-//     MiniCssExtractPlugin.loader,
-//     'css-loader',
-//     {
-//       loader: 'sass-loader',
-//       options: {
-//         outputStyle: 'expanded'
-//       }
-//     }
-//   ]
-// }, {
-//   test: /\.ttf$/,
-//   use: [{
-//     loader: 'ttf2woff2-loader',
-//     options: {
-//       publicPath: '/fonts'
-//     }
-//   }]
-// }]
-
-
-// plugins: [
-//   new MiniCssExtractPlugin({
-//     filename: 'styles/main.css'
-//   })
-// ],
-// resolveLoader: {
-//   modules: [
-//     'node_modules',
-//     path.resolve(__dirname, 'loaders')
-//   ]
-// }
