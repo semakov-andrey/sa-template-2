@@ -1,0 +1,43 @@
+{
+  "name": "sa-template-2",
+  "version": "1.0.0",
+  "description": "sa-template-2",
+  "main": "install.js",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:semakov_andrey/sa-template-2.git"
+  },
+  "author": "Semakov Andrey",
+  "license": "ISC",
+  "scripts": {
+    "install": "node install.js",
+    "module": "node module.js",
+    "start": "node start.js",
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "webpack": "^4.28.2",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.1.5"
+  },
+  "config": {
+    "directories": {
+      "source": "src",
+      "development": "tmp",
+      "production": "build",
+      "files": {
+        "js": [
+          "scripts",
+          "scripts"
+        ]
+      }
+    },
+    "devServer": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    },
+    "entries": {
+      "main": "main"
+    }
+  }
+}
