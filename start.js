@@ -1,6 +1,6 @@
 'use strict';
 
-const packageJSON           	= require('./package.json');
+const packageJSON           	  = require('./package.json');
 const webpack                   = require('webpack');
 const WebpackDevServer          = require('webpack-dev-server');
 const config                    = require('./config/webpack.dev.js');

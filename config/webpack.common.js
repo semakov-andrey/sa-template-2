@@ -2,7 +2,6 @@
 
 const packageJSON           = require('../package.json');
 const path                  = require('path');
-//const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin    = require('svg-sprite-loader/plugin');
 const root                  = path.resolve(__dirname, '..');
 const dirs                  = packageJSON.config.directories;
@@ -13,6 +12,10 @@ for(let folder in dirs.files) if(dirs.files[folder] !== '') dirs.files[folder] +
 
 module.exports = {
   entry: entries,
+  output: {
+    filename: `${dirs.files.js}main.js`,
+    publicPath: '/'
+  },
   module: {
     rules: [{
       test: /\.js$/,
@@ -24,42 +27,6 @@ module.exports = {
         }
       }]
     }, {
-      test: /\.pug$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: `${dirs.files.html}[name].html`
-        }
-      },
-        'extract-loader',
-      {
-        loader: 'html-loader',
-        options: {
-          interpolate: 'require'
-        }
-      }, {
-        loader: 'pug-html-loader',
-        options: {
-          pretty: true,
-          data: {
-            base: '/'
-          }
-        }
-      }]
-    }, {
-      test: /\.scss$/,
-      use: [
-        //MiniCssExtractPlugin.loader,
-        'style-loader',
-        'css-loader',
-        {
-          loader: 'sass-loader',
-          options: {
-            outputStyle: 'expanded'
-          }
-        }
-      ]
-    }, {
       test: /\.(woff|woff2|ttf|otf)$/,
       use: [{
         loader: 'file-loader',
@@ -68,20 +35,13 @@ module.exports = {
         }
       }]
     }, {
-      test: /content\\.*\.(jpg|png|gif|svg|mp4)$/,
+      test: /content\\.*\.mp4$/,
       use: [{
         loader: 'file-loader',
         options: {
           name: `${dirs.files.images}[name].[ext]`
         }
       }]
-    }, {
-      test: /svg\\.*\.svg$/,
-      loader: 'svg-sprite-loader',
-      options: {
-        extract: true,
-        spriteFilename: `${dirs.files.sprite}sprite.svg`
-      }
     }, {
       test: /other\\.*$/,
       use: [{
@@ -93,7 +53,6 @@ module.exports = {
     }]
   },
   plugins: [
-    //new MiniCssExtractPlugin({ filename: `${dirs.files.css}[name].css` }),
     new SpriteLoaderPlugin()
   ]
 };
