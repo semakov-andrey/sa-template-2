@@ -6,6 +6,8 @@ const WebpackDevServer          = require('webpack-dev-server');
 const config                    = require('./config/webpack.dev.js');
 const devServerCofig            = packageJSON.config.devServer;
 
+config.entry.main.unshift(`webpack-dev-server/client?http://localhost:${devServerCofig.port}`, 'webpack/hot/dev-server');
+
 const compiler = webpack(config);
 const server = new WebpackDevServer(compiler, config.devServer);
 

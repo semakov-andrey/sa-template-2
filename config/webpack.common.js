@@ -2,13 +2,14 @@
 
 const packageJSON           = require('../package.json');
 const path                  = require('path');
-const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin    = require('svg-sprite-loader/plugin');
 const root                  = path.resolve(__dirname, '..');
 const dirs                  = packageJSON.config.directories;
 const entries               = packageJSON.config.entries;
 
-Object.keys(entries).forEach(key => entries[key] = path.resolve(root, dirs.source, dirs.files.js[0], entries[key]));
+Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
+for(let folder in dirs.files) if(dirs.files[folder] !== '') dirs.files[folder] += '/';
 
 module.exports = {
   entry: entries,
@@ -27,7 +28,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: '[name].html'
+          name: `${dirs.files.html}[name].html`
         }
       },
         'extract-loader',
@@ -48,7 +49,8 @@ module.exports = {
     }, {
       test: /\.scss$/,
       use: [
-        MiniCssExtractPlugin.loader,
+        //MiniCssExtractPlugin.loader,
+        'style-loader',
         'css-loader',
         {
           loader: 'sass-loader',
@@ -62,7 +64,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name].[ext]'
+          name: `${dirs.files.fonts}[name].[ext]`
         }
       }]
     }, {
@@ -70,7 +72,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: 'images/[name].[ext]'
+          name: `${dirs.files.images}[name].[ext]`
         }
       }]
     }, {
@@ -78,20 +80,20 @@ module.exports = {
       loader: 'svg-sprite-loader',
       options: {
         extract: true,
-        spriteFilename: 'images/sprite.svg'
+        spriteFilename: `${dirs.files.sprite}sprite.svg`
       }
     }, {
       test: /other\\.*$/,
       use: [{
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]'
+          name: `${dirs.files.other}[name].[ext]`
         }
       }]
     }]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'styles/[name].css' }),
+    //new MiniCssExtractPlugin({ filename: `${dirs.files.css}[name].css` }),
     new SpriteLoaderPlugin()
   ]
 };

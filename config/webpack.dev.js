@@ -11,7 +11,7 @@ const dirs                  = packageJSON.config.directories;
 module.exports = merge(common, {
   mode: 'development',
   output: {
-    filename: `${dirs.files.js[1]}/main.js`, 
+    filename: `${dirs.files.js}main.js`, 
     path: path.resolve(root, dirs.development),
     publicPath: '/'
   },
