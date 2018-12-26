@@ -31,8 +31,12 @@ module.exports = {
         }
       },
         'extract-loader',
-        'html-loader',
       {
+        loader: 'html-loader',
+        options: {
+          interpolate: 'require'
+        }
+      }, {
         loader: 'pug-html-loader',
         options: {
           pretty: true,
@@ -76,6 +80,14 @@ module.exports = {
         extract: true,
         spriteFilename: 'images/sprite.svg'
       }
+    }, {
+      test: /other\\.*$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
+      }]
     }]
   },
   plugins: [
