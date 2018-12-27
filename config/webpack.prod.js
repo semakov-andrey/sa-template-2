@@ -28,7 +28,7 @@ module.exports = merge(common, {
           name: `${dirs.files.html}[name].html`
         }
       },
-      'extract-loader',
+        'extract-loader',
       {
         loader: 'html-loader',
         options: {
@@ -37,23 +37,19 @@ module.exports = merge(common, {
           removeComments: true,
           collapseWhitespace: true,
           conservativeCollapse: false,
-          removeAttributeQuotes: false,
+          quoteCharacter: '"',
+          minifyCSS: true,
+          minifyJS: true,
           removeOptionalTags: true
         }
-      }, {
-        loader: 'pug-html-loader',
-        options: {
-          pretty: true,
-          data: {
-            base: '/'
-          }
-        }
-      }]
+      },
+        'pug-html-loader'
+      ]
     }, {
       test: /\.scss$/,
       use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
         {
           loader: 'sass-loader',
           options: {
@@ -133,4 +129,9 @@ module.exports = merge(common, {
       })
     ],
   },
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 512000,
+    maxAssetSize: 4096000
+  }
 });

@@ -33,10 +33,7 @@ module.exports = merge(common, {
       }, {
         loader: 'pug-html-loader',
         options: {
-          pretty: true,
-          data: {
-            base: '/'
-          }
+          pretty: true
         }
       }]
     }, {
