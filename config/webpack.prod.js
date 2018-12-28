@@ -10,6 +10,7 @@ const autoprefixer              = require('autoprefixer');
 const UglifyJsPlugin            = require('uglifyjs-webpack-plugin');
 const PostCSSAssetsPlugin       = require('postcss-assets-webpack-plugin');
 const cssnano                   = require('cssnano');
+const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 const root                      = path.resolve(__dirname, '..');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
@@ -48,14 +49,9 @@ module.exports = merge(common, {
     }, {
       test: /\.scss$/,
       use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        {
-          loader: 'sass-loader',
-          options: {
-            outputStyle: 'expanded'
-          }
-        }
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader'
       ]
     }, {
       test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
@@ -78,11 +74,12 @@ module.exports = merge(common, {
             optimizationLevel: 7,
           },
           webp: {
-            quality: 80
+            quality: 90
           },
           svgo: {
             plugins: [
               { removeViewBox: false },
+              { convertColors: { shorthex: true }},
               { removeEmptyAttrs: false }
             ]
           }
@@ -98,12 +95,25 @@ module.exports = merge(common, {
         }
       },
         'svg-fill-loader',
-        'svgo-loader'
-      ]
+      {
+        loader: 'svgo-loader',
+        options: {
+          plugins: [
+            { removeViewBox: false },
+            { convertColors: { shorthex: true }},
+            { removeEmptyAttrs: false }
+          ]
+        }
+      }]
     }]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: `${dirs.files.css}[name].css` })
+    new MiniCssExtractPlugin({
+      filename: `${dirs.files.css}[name].css`
+    }),
+    new SpriteLoaderPlugin({
+      plainSprite: true
+    })
   ],
   optimization: {
     minimizer: [
@@ -114,7 +124,9 @@ module.exports = merge(common, {
         test: /\.css$/,
         log: false,
         plugins: [
-          autoprefixer({ browsers: browserList }),
+          autoprefixer({
+            browsers: browserList
+          }),
           cssnano({
             preset: ['default', {
               discardComments: {

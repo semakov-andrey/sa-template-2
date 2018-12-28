@@ -1,14 +1,15 @@
 'use strict';
 
-const packageJSON           = require('../package.json');
-const common                = require('./webpack.common.js');
-const webpack               = require('webpack');
-const merge                 = require('webpack-merge');
-const path                  = require('path');
-const autoprefixer          = require('autoprefixer');
-const root                  = path.resolve(__dirname, '..');
-const dirs                  = packageJSON.config.directories;
-const browserList           = packageJSON.config.browsers;
+const packageJSON               = require('../package.json');
+const common                    = require('./webpack.common.js');
+const webpack                   = require('webpack');
+const merge                     = require('webpack-merge');
+const path                      = require('path');
+const autoprefixer              = require('autoprefixer');
+const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
+const root                      = path.resolve(__dirname, '..');
+const dirs                      = packageJSON.config.directories;
+const browserList               = packageJSON.config.browsers;
 
 module.exports = merge(common, {
   mode: 'development',
@@ -24,7 +25,7 @@ module.exports = merge(common, {
           name: `${dirs.files.html}[name].html`
         }
       },
-      'extract-loader',
+        'extract-loader',
       {
         loader: 'html-loader',
         options: {
@@ -39,20 +40,26 @@ module.exports = merge(common, {
     }, {
       test: /\.scss$/,
       use: [
-        'style-loader',
-        'css-loader',
-        {
+        MiniCssExtractPlugin.loader, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        }, {
           loader: 'postcss-loader',
           options: {
+            sourceMap: true,
             plugins: loader => [
-              autoprefixer({ browsers: browserList })
+              autoprefixer({
+                browsers: browserList
+              })
             ]
           }
-        },
-        {
+        }, {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'expanded'
+            outputStyle: 'expanded',
+            sourceMap: true
           }
         }
       ]
@@ -90,6 +97,9 @@ module.exports = merge(common, {
   },
   devtool: 'source-map',
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: `${dirs.files.css}[name].css`
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 });
