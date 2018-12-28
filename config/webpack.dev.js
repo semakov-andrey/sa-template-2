@@ -10,8 +10,14 @@ const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
 const root                      = path.resolve(__dirname, '..');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
+const entries                   = packageJSON.config.entries;
+const configServer           	  = require('../package.json').config.devServer;
+
+Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
+entries.main.unshift(`webpack-dev-server/client?http://localhost:${configServer.port}`, 'webpack/hot/dev-server');
 
 module.exports = merge(common, {
+  entry: entries,
   mode: 'development',
   output: {
     path: path.resolve(root, dirs.development)
@@ -86,9 +92,10 @@ module.exports = merge(common, {
     contentBase: path.resolve(root, dirs.development),
     compress: true,
     hot: true,
-    quiet: false,
+    https: configServer.secure,
     inline: true,
     lazy: false,
+    quiet: false,
     stats: 'minimal',
     watchOptions: {
       aggregateTimeout: 300,

@@ -1,33 +1,33 @@
 'use strict';
 
-const packageJSON           	  = require('./package.json');
-const fs                        = require('fs');
-const webpack                   = require('webpack');
-const del                       = require('del');
+const dirs           	          = require('./package.json').config.directories;
 const config                    = require('./config/webpack.prod.js');
-const dirs                      = packageJSON.config.directories;
+const webpack                   = require('webpack');
+const fs                        = require('fs');
+const del                       = require('del');
+
+const compiler = webpack(config);
 const statsOptions = {
   assets: false,
   builtAt: false,
   colors: true,
   children: false,
   chunks: false,
+  entrypoints: false,
   hash: false,
   modules: false,
   version: false
 };
-
-if(fs.existsSync(dirs.production)) del.sync(`${dirs.production}/**/*`);
-
-const compiler = webpack(config);
-
+if (fs.existsSync(dirs.production)) del.sync(`${dirs.production}/**/*`);
 compiler.hooks.compile.tap('compile', () => console.log('Building frontend...'));
-
 compiler.run((error, stats) => {
-  if(error) {
-    console.error(err.stack || err);
-    if(err.details) console.error(err.details);
-    return;
+  if (!error) {
+    console.log('Compiled successfully.');
+    console.log(stats.toString(statsOptions));
+  } else {
+    console.error(error.stack || error);
+    if (error.details) {
+      console.error(error.details);
+    }
   }
-  console.log(stats.toString(statsOptions));
 });

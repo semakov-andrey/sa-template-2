@@ -14,8 +14,12 @@ const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 const root                      = path.resolve(__dirname, '..');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
+const entries                   = packageJSON.config.entries;
+
+Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
 
 module.exports = merge(common, {
+  entry: entries,
   mode: 'production',
   output: {
     path: path.resolve(root, dirs.production)

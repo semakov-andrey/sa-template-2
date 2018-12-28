@@ -5,13 +5,10 @@ const path                  = require('path');
 const SpriteLoaderPlugin    = require('svg-sprite-loader/plugin');
 const root                  = path.resolve(__dirname, '..');
 const dirs                  = packageJSON.config.directories;
-const entries               = packageJSON.config.entries;
 
-Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
 for(let folder in dirs.files) if(dirs.files[folder] !== '') dirs.files[folder] += '/';
 
 module.exports = {
-  entry: entries,
   output: {
     filename: `${dirs.files.js}main.js`,
     publicPath: '/'
