@@ -1,16 +1,18 @@
 'use strict';
 
-const packageJSON           = require('../package.json');
-const path                  = require('path');
-const SpriteLoaderPlugin    = require('svg-sprite-loader/plugin');
-const root                  = path.resolve(__dirname, '..');
-const dirs                  = packageJSON.config.directories;
+const dirs                      = require('../package.json').config.directories;
+const path                      = require('path');
+const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 
-for(let folder in dirs.files) if(dirs.files[folder] !== '') dirs.files[folder] += '/';
+Object.keys(dirs.files).forEach(folder => {
+  if (dirs.files[folder] !== '') {
+    dirs.files[folder] += '/';
+  }
+});
 
 module.exports = {
   output: {
-    filename: `${dirs.files.js}main.js`,
+    filename: `${dirs.files.js}[name].js`,
     publicPath: '/'
   },
   module: {

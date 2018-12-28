@@ -1,26 +1,30 @@
 'use strict';
 
 const packageJSON               = require('../package.json');
-const common                    = require('./webpack.common.js');
+const config                    = require('./webpack.common.js');
+const sourcemapPathFixer        = require('./sourcemap-path-fixer.js');
 const webpack                   = require('webpack');
-const merge                     = require('webpack-merge');
+const webpackMerge              = require('webpack-merge');
 const path                      = require('path');
 const autoprefixer              = require('autoprefixer');
-const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
-const root                      = path.resolve(__dirname, '..');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
-const configServer           	  = require('../package.json').config.devServer;
+const configServer           	  = packageJSON.config.devServer;
+const protocol                  = `http${configServer.secure ? 's' : ''}:`;
 
-Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
-entries.main.unshift(`webpack-dev-server/client?http://localhost:${configServer.port}`, 'webpack/hot/dev-server');
+Object.keys(entries).forEach((key, index) => {
+  entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])];
+  if (!index) {
+    entries[key].unshift(`webpack-dev-server/client?${protocol}//localhost:${configServer.port}`, 'webpack/hot/dev-server');
+  }
+});
 
-module.exports = merge(common, {
+module.exports = webpackMerge(config, {
   entry: entries,
   mode: 'development',
   output: {
-    path: path.resolve(root, dirs.development)
+    path: path.resolve(dirs.development)
   },
   module: {
     rules: [{
@@ -45,8 +49,12 @@ module.exports = merge(common, {
       }]
     }, {
       test: /\.scss$/,
-      use: [
-        MiniCssExtractPlugin.loader, {
+      use: ['style-loader', {
+          loader: path.resolve(__dirname, 'sourcemap-path-fixer'),
+          options: {
+            sourceMap: true
+          }
+        }, {
           loader: 'css-loader',
           options: {
             sourceMap: true
@@ -89,9 +97,10 @@ module.exports = merge(common, {
     }]
   },
   devServer: {
-    contentBase: path.resolve(root, dirs.development),
+    contentBase: path.resolve('../', dirs.development),
     compress: true,
     hot: true,
+    hotOnly: true,
     https: configServer.secure,
     inline: true,
     lazy: false,
@@ -104,9 +113,6 @@ module.exports = merge(common, {
   },
   devtool: 'source-map',
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: `${dirs.files.css}[name].css`
-    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 });

@@ -1,28 +1,26 @@
-
 'use strict';
 
 const packageJSON               = require('../package.json');
-const common                    = require('./webpack.common.js');
-const merge                     = require('webpack-merge');
+const config                    = require('./webpack.common.js');
+const webpackMerge              = require('webpack-merge');
 const path                      = require('path');
-const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
 const autoprefixer              = require('autoprefixer');
-const UglifyJsPlugin            = require('uglifyjs-webpack-plugin');
 const PostCSSAssetsPlugin       = require('postcss-assets-webpack-plugin');
+const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
 const cssnano                   = require('cssnano');
+const UglifyJsPlugin            = require('uglifyjs-webpack-plugin');
 const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
-const root                      = path.resolve(__dirname, '..');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
 
-Object.keys(entries).forEach(key => entries[key] = [path.resolve(root, dirs.source, dirs.files.js, entries[key])]);
+Object.keys(entries).forEach(key => entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])]);
 
-module.exports = merge(common, {
+module.exports = webpackMerge(config, {
   entry: entries,
   mode: 'production',
   output: {
-    path: path.resolve(root, dirs.production)
+    path: path.resolve(dirs.production)
   },
   module: {
     rules: [{
