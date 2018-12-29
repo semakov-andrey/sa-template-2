@@ -43,6 +43,7 @@ module.exports = webpackMerge(config, {
           quoteCharacter: '"',
           minifyCSS: true,
           minifyJS: true,
+          removeAttributeQuotes: true,
           removeOptionalTags: true
         }
       },
