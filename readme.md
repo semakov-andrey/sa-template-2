@@ -3,7 +3,6 @@
 
 ### Установка ###
 - `npm init --yes`  
-- `npm install -g gulp-cli`
 - `npm install sa-template-2 --save-dev`
 
 ### Особенности установки/обновления ###
