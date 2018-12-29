@@ -1,11 +1,11 @@
 'use strict';
 
-const fs              = require('fs');
-const path            = require('path');
-const installed       = path.basename(path.resolve(__dirname, '../')) === 'node_modules';
-const project         = installed ? '../../' : './';
+const fs                        = require('fs');
+const path                      = require('path');
 
-let newModule         = process.argv[2] && typeof(process.argv[2]) === 'string' ? process.argv[2] : '';
+const installed                 = path.basename(path.resolve(__dirname, '../')) === 'node_modules';
+const project                   = installed ? '../../' : './';
+const newModule                 = process.argv[2] && typeof(process.argv[2]) === 'string' ? process.argv[2] : '';
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
