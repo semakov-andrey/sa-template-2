@@ -40,6 +40,7 @@ const json = {
     ...templateJSON.dependencies
   },
   config: {
+    devServer: templateJSON.config.devServer,
     entries: templateJSON.config.entries,
     browsers: templateJSON.config.browsers,
     ...packageJSON.config,
