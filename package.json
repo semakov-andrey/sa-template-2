@@ -2,12 +2,23 @@
   "name": "sa-template-2",
   "version": "2.1.3",
   "description": "sa-template-2",
+  "keywords": [
+    "template",
+    "webpack",
+    "pug",
+    "sass",
+    "postcss",
+    "svg-sprite",
+    "imagemin",
+    "optimize",
+    "compress"
+  ],
   "main": "install.js",
   "repository": {
     "type": "git",
     "url": "git@gitlab.com:semakov_andrey/sa-template-2.git"
   },
-  "author": "Semakov Andrey",
+  "author": "Semakov Andrey <semakov.andrey.web@yandex.ru>",
   "license": "ISC",
   "scripts": {
     "install": "node install.js",

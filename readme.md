@@ -37,4 +37,4 @@
 - [postcss](https://github.com/postcss/postcss) + [postcss-loader](https://github.com/postcss/postcss-loader) + [autoprefixer](https://autoprefixer.github.io/ru/) + [cssnano](https://cssnano.co/)
 - [uglifyJS](https://github.com/mishoo/UglifyJS)
 - [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) + [svgo](https://github.com/svg/svgo) + [svgo-loader](https://github.com/rpominov/svgo-loader)
-- [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) + [mozjpeg](https://github.com/mozilla/mozjpeg) + [gifsicle](https://www.lcdf.org/gifsicle/) + [optipng](http://optipng.sourceforge.net/) + [imagemin-webp](https://github.com/imagemin/imagemin-webp)
+- [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader) + [imagemin](https://github.com/imagemin/imagemin) + [mozjpeg](https://github.com/mozilla/mozjpeg) + [gifsicle](https://www.lcdf.org/gifsicle/) + [optipng](http://optipng.sourceforge.net/) + [imagemin-webp](https://github.com/imagemin/imagemin-webp)
