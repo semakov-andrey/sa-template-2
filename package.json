@@ -26,6 +26,33 @@
     "start": "node start.js",
     "build": "node build.js"
   },
+  "config": {
+    "directories": {
+      "source": "src",
+      "development": "tmp",
+      "production": "build",
+      "files": {
+        "html": "",
+        "css": "styles",
+        "js": "scripts",
+        "fonts": "fonts",
+        "images": "images",
+        "sprite": "images",
+        "other": ""
+      }
+    },
+    "devServer": {
+      "secure": true,
+      "host": "0.0.0.0",
+      "port": "3000"
+    },
+    "entries": {
+      "main": "main"
+    },
+    "browsers": [
+      "> 0.5%"
+    ]
+  },
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
@@ -55,31 +82,7 @@
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.5"
   },
-  "config": {
-    "directories": {
-      "source": "src",
-      "development": "tmp",
-      "production": "build",
-      "files": {
-        "html": "",
-        "css": "styles",
-        "js": "scripts",
-        "fonts": "fonts",
-        "images": "images",
-        "sprite": "images",
-        "other": ""
-      }
-    },
-    "devServer": {
-      "secure": true,
-      "host": "0.0.0.0",
-      "port": "3000"
-    },
-    "entries": {
-      "main": "main"
-    },
-    "browsers": [
-      "> 0.5%"
-    ]
+  "devDependencies": {
+    "sa-source": "^1.0.11"
   }
 }
