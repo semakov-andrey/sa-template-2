@@ -19,6 +19,9 @@ if(!fs.existsSync(path.resolve(__dirname, project, 'readme.md'))) {
 ncp.ncp(path.resolve(__dirname, 'start.js'), path.resolve(__dirname, project, 'start.js'), error => error ? console.error('\x1b[31m%s\x1b[0m', 'Error: ' + error) : console.log('Success: start.js updated'));
 ncp.ncp(path.resolve(__dirname, 'build.js'), path.resolve(__dirname, project, 'build.js'), error => error ? console.error('\x1b[31m%s\x1b[0m', 'Error: ' + error) : console.log('Success: build.js updated'));
 
+/* update stylelint */
+ncp.ncp(path.resolve(__dirname, '.stylelintrc'), path.resolve(__dirname, project, '.stylelintrc'), error => error ? console.error('\x1b[31m%s\x1b[0m', 'Error: ' + error) : console.log('Success: stylelint updated'));
+
 /* update webpack configuration */
 ncp.ncp(path.resolve(__dirname, 'config'), path.resolve(__dirname, project, 'config'), error => error ? console.error('\x1b[31m%s\x1b[0m', 'Error: ' + error) : console.log('Success: webpack configuration updated'));
 
@@ -27,7 +30,8 @@ delete templateJSON.dependencies['ncp'];
 const scripts = { 
   start: 'node start.js',
   build: 'node build.js',
-  module: 'node node_modules/sa-template-2/module.js'
+  module: 'node node_modules/sa-template-2/module.js',
+  'lint-css': 'stylelint src/**/*.scss -f verbose --fix'
 };
 const json = {
   ...packageJSON,

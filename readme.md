@@ -17,7 +17,8 @@
 ### Основные команды ###
 `npm run start` - development - разработка  
 `npm run build` - production - сборка   
-`npm run module название` - создание модуля с .pug, .scss и .js файлами    
+`npm run module название` - создание модуля с .pug, .scss и .js файлами  
+`npm run lint-css` - линтинг css     
 `npm update sa-template-2` - обновление шаблона   
 `npm install sa-template-2@version` - обновление шаблона 
 
