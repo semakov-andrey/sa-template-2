@@ -2,7 +2,6 @@
 
 const packageJSON               = require('../package.json');
 const config                    = require('./webpack.common.js');
-const sourcemapPathFixer        = require('./sourcemap-path-fixer.js');
 const webpack                   = require('webpack');
 const webpackMerge              = require('webpack-merge');
 const path                      = require('path');
