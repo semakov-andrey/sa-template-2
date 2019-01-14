@@ -7,6 +7,7 @@ const webpack                   = require('webpack');
 const webpackMerge              = require('webpack-merge');
 const path                      = require('path');
 const autoprefixer              = require('autoprefixer');
+const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
 const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
@@ -49,17 +50,15 @@ module.exports = webpackMerge(config, {
       }]
     }, {
       test: /\.scss$/,
-      use: ['style-loader', {
-          loader: path.resolve(__dirname, 'sourcemap-path-fixer'),
-          options: {
-            sourceMap: true
-          }
-        }, {
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
           loader: 'css-loader',
           options: {
             sourceMap: true
           }
-        }, {
+        },
+        {
           loader: 'postcss-loader',
           options: {
             sourceMap: true,
@@ -69,7 +68,8 @@ module.exports = webpackMerge(config, {
               })
             ]
           }
-        }, {
+        },
+        {
           loader: 'sass-loader',
           options: {
             outputStyle: 'expanded',
@@ -99,8 +99,6 @@ module.exports = webpackMerge(config, {
   devServer: {
     contentBase: path.resolve('../', dirs.development),
     compress: true,
-    //hot: true,
-    //hotOnly: true,
     https: configServer.secure,
     inline: true,
     lazy: false,
@@ -111,5 +109,10 @@ module.exports = webpackMerge(config, {
       poll: 1000
     }
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: `${dirs.files.css}[name].css`
+    })
+  ]
 });
