@@ -1,21 +1,46 @@
 {
   "defaultSeverity": "warning",
+  plugins: [
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-scss",
+    "stylelint-selector-no-empty",
+    "stylelint-suitcss",
+    "stylelint-z-index-value-constraint"
+  ],
   "rules": {
+    "plugin/declaration-block-no-ignored-properties": true,
+    "plugin/stylelint-selector-no-empty": true,
+    "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+    "scss/at-else-empty-line-before": "never",
+    "scss/at-else-if-parentheses-space-before": "always",
+    "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+    "scss/at-function-parentheses-space-before": "always",
+    "scss/at-mixin-argumentless-call-parentheses": "never",
+    "scss/at-mixin-parentheses-space-before": "always",
+    "scss/at-rule-no-unknown": true,
+    "scss/dollar-variable-no-missing-interpolation": true,
+    "scss/operator-no-newline-after": true,
+    "scss/operator-no-newline-before": true,
+    "scss/operator-no-unspaced": true,
+    "scss/no-duplicate-dollar-variables": true,
+    "suitcss/custom-property-no-outside-root": true,
+    "suitcss/root-no-standard-properties": true,
+    "suitcss/selector-root-no-composition": true,
+    "plugin/z-index-value-constraint": {
+      "min": 1,
+      "max": 1000
+    },
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always",
-    "at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": [
-          "include",
-          "mixin"
-        ]
-      }
-    ],
     "at-rule-semicolon-newline-after": "always",
     "at-rule-semicolon-space-before": "never",
     "block-closing-brace-empty-line-before": "never",
-    "block-closing-brace-newline-after": "always",
+    "block-closing-brace-newline-after": [
+      "always",
+      {
+        "ignoreAtRules": ["if", "else"]
+      }
+    ],
     "block-closing-brace-newline-before": "always",
     "block-no-empty": true,
     "block-opening-brace-newline-after": "always",
