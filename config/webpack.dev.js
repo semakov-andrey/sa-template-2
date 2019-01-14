@@ -16,7 +16,7 @@ const protocol                  = `http${configServer.secure ? 's' : ''}:`;
 Object.keys(entries).forEach((key, index) => {
   entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])];
   if (!index) {
-    entries[key].unshift(`webpack-dev-server/client?${protocol}//localhost:${configServer.port}`, 'webpack/hot/dev-server');
+    entries[key].unshift(`webpack-dev-server/client?${protocol}//localhost:${configServer.port}`);
   }
 });
 
@@ -99,8 +99,8 @@ module.exports = webpackMerge(config, {
   devServer: {
     contentBase: path.resolve('../', dirs.development),
     compress: true,
-    hot: true,
-    hotOnly: true,
+    //hot: true,
+    //hotOnly: true,
     https: configServer.secure,
     inline: true,
     lazy: false,
@@ -111,8 +111,5 @@ module.exports = webpackMerge(config, {
       poll: 1000
     }
   },
-  devtool: 'source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  devtool: 'source-map'
 });
