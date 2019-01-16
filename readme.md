@@ -6,7 +6,7 @@
 - `npm install sa-template-2 --save-dev`
 
 ### Особенности установки/обновления ###
-- readme.md, .stylelintrc копируются, если не существуют 
+- readme.md, .stylelintrc, .eslintrc копируются, если не существуют 
 - Конфигурация, start.js и build.js заменяются
 - .gitignore дополняется необходимыми записями
 - package.json:

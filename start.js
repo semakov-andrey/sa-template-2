@@ -7,7 +7,7 @@ const WebpackDevServer          = require('webpack-dev-server');
 const ifaces                    = require('os').networkInterfaces();
 const protocol                  = `http${configServer.secure ? 's' : ''}:`;
 
-let addresses = [`${protocol}//localhost:${configServer.port}`];
+const addresses = [`${protocol}//localhost:${configServer.port}`];
 Object.keys(ifaces).forEach(ifname => {
   let alias = 0;
   ifaces[ifname].forEach(iface => {

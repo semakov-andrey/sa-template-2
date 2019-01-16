@@ -1,6 +1,6 @@
 {
   "defaultSeverity": "warning",
-  plugins: [
+  "plugins": [
     "stylelint-declaration-block-no-ignored-properties",
     "stylelint-scss",
     "stylelint-selector-no-empty",
@@ -74,7 +74,6 @@
     "declaration-colon-space-after": "always",
     "declaration-colon-space-before": "never",
     "declaration-empty-line-before": "never",
-    "declaration-no-important": true,
     "font-family-name-quotes": "always-where-recommended",
     "font-family-no-duplicate-names": true,
     "font-family-no-missing-generic-family-keyword": true,
