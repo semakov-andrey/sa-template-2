@@ -1,7 +1,6 @@
 'use strict';
 
 const dirs                      = require('../package.json').config.directories;
-const path                      = require('path');
 const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 
 Object.keys(dirs.files).forEach(folder => {

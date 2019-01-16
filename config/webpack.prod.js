@@ -23,92 +23,103 @@ module.exports = webpackMerge(config, {
     path: path.resolve(dirs.production)
   },
   module: {
-    rules: [{
-      test: /\.pug$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: `${dirs.files.html}[name].html`
-        }
-      },
-        'extract-loader',
+    rules: [
       {
-        loader: 'html-loader',
-        options: {
-          interpolate: 'require',
-          minimize: true,
-          removeComments: true,
-          collapseWhitespace: true,
-          conservativeCollapse: false,
-          quoteCharacter: '"',
-          minifyCSS: true,
-          minifyJS: true,
-          removeAttributeQuotes: true,
-          removeOptionalTags: true
-        }
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${dirs.files.html}[name].html`
+            }
+          },
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              interpolate: 'require',
+              minimize: true,
+              removeComments: true,
+              collapseWhitespace: true,
+              conservativeCollapse: false,
+              quoteCharacter: '"',
+              minifyCSS: true,
+              minifyJS: true,
+              removeAttributeQuotes: true,
+              removeOptionalTags: true
+            }
+          },
+          'pug-html-loader'
+        ]
       },
-        'pug-html-loader'
-      ]
-    }, {
-      test: /\.scss$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'sass-loader'
-      ]
-    }, {
-      test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: `${dirs.files.images}[name].[ext]`
-        }
-      }, {
-        loader: 'image-webpack-loader',
-        options: {
-          mozjpeg: {
-            progressive: true,
-            quality: 80
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${dirs.files.images}[name].[ext]`
+            }
           },
-          gifsicle: {
-            interlaced: false
-          },
-          optipng: {
-            optimizationLevel: 7,
-          },
-          webp: {
-            quality: 90
-          },
-          svgo: {
-            plugins: [
-              { removeViewBox: false },
-              { convertColors: { shorthex: true }},
-              { removeEmptyAttrs: false }
-            ]
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 80
+              },
+              gifsicle: {
+                interlaced: false
+              },
+              optipng: {
+                optimizationLevel: 7
+              },
+              webp: {
+                quality: 90
+              },
+              svgo: {
+                plugins: [
+                  {removeViewBox: false},
+                  {convertColors: {shorthex: true}},
+                  {removeEmptyAttrs: false}
+                ]
+              }
+            }
           }
-        }
-      }]
-    }, {
-      test: /svg\\.*\.svg$/,
-      use: [{
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: `${dirs.files.sprite}sprite.svg`
-        }
+        ]
       },
-        'svg-fill-loader',
       {
-        loader: 'svgo-loader',
-        options: {
-          plugins: [
-            { removeViewBox: false },
-            { convertColors: { shorthex: true }},
-            { removeEmptyAttrs: false }
-          ]
-        }
-      }]
-    }]
+        test: /svg\\.*\.svg$/,
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              extract: true,
+              spriteFilename: `${dirs.files.sprite}sprite.svg`
+            }
+          },
+          'svg-fill-loader',
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                {removeViewBox: false},
+                {convertColors: {shorthex: true}},
+                {removeEmptyAttrs: false}
+              ]
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -133,16 +144,16 @@ module.exports = webpackMerge(config, {
           cssnano({
             preset: ['default', {
               discardComments: {
-                removeAll: true,
+                removeAll: true
               },
               minifyFontValues: {
                 removeQuotes: false
               }
             }]
           })
-        ],
+        ]
       })
-    ],
+    ]
   },
   performance: {
     hints: 'warning',

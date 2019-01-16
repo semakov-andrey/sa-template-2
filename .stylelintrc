@@ -22,7 +22,13 @@
     "scss/operator-no-newline-after": true,
     "scss/operator-no-newline-before": true,
     "scss/operator-no-unspaced": true,
-    "scss/no-duplicate-dollar-variables": true,
+    "scss/no-duplicate-dollar-variables": [
+      true,
+      {
+        "ignoreInside": ["at-rule", "nested-at-rule"],
+        "ignoreInsideAtRules": ["mixin"]
+      }
+    ],
     "suitcss/custom-property-no-outside-root": true,
     "suitcss/root-no-standard-properties": true,
     "suitcss/selector-root-no-composition": true,
@@ -88,7 +94,12 @@
     "function-name-case": "lower",
     "function-parentheses-newline-inside": "never-multi-line",
     "function-parentheses-space-inside": "never",
-    "function-url-quotes": "always",
+    "function-url-quotes": [
+      "always",
+      {
+        "except": ["empty"]
+      }
+    ],
     "function-whitespace-after": "always",
     "indentation": 2,
     "keyframe-declaration-no-important": true,

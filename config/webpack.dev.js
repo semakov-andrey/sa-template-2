@@ -2,7 +2,6 @@
 
 const packageJSON               = require('../package.json');
 const config                    = require('./webpack.common.js');
-const webpack                   = require('webpack');
 const webpackMerge              = require('webpack-merge');
 const path                      = require('path');
 const autoprefixer              = require('autoprefixer');
@@ -27,73 +26,85 @@ module.exports = webpackMerge(config, {
     path: path.resolve(dirs.development)
   },
   module: {
-    rules: [{
-      test: /\.pug$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: `${dirs.files.html}[name].html`
-        }
-      },
-        'extract-loader',
+    rules: [
       {
-        loader: 'html-loader',
-        options: {
-          interpolate: 'require'
-        }
-      }, {
-        loader: 'pug-html-loader',
-        options: {
-          pretty: true
-        }
-      }]
-    }, {
-      test: /\.scss$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${dirs.files.html}[name].html`
+            }
+          },
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              interpolate: 'require'
+            }
+          },
+          {
+            loader: 'pug-html-loader',
+            options: {
+              pretty: true
+            }
           }
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true,
-            plugins: loader => [
-              autoprefixer({
-                browsers: browserList
-              })
-            ]
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: () => [
+                autoprefixer({
+                  browsers: browserList
+                })
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true
+            }
           }
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            outputStyle: 'expanded',
-            sourceMap: true
+        ]
+      },
+      {
+        test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${dirs.files.images}[name].[ext]`
+            }
           }
-        }
-      ]
-    }, {
-      test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: `${dirs.files.images}[name].[ext]`
-        }
-      }]
-    }, {
-      test: /svg\\.*\.svg$/,
-      use: [{
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: `${dirs.files.sprite}sprite.svg`
-        }
-      }]
-    }]
+        ]
+      },
+      {
+        test: /svg\\.*\.svg$/,
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              extract: true,
+              spriteFilename: `${dirs.files.sprite}sprite.svg`
+            }
+          }
+        ]
+      }
+    ]
   },
   devServer: {
     contentBase: path.resolve('../', dirs.development),

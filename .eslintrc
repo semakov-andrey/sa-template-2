@@ -70,7 +70,6 @@
     "no-fallthrough": 1,
     "no-global-assign": 1,
     "no-implied-eval": 1,
-    "no-invalid-this": 1,
     "no-iterator": 1,
     "no-lone-blocks": 1,
     "no-loop-func": 1,
@@ -80,7 +79,7 @@
     "no-new-wrappers": 1,
     "no-octal": 1,
     "no-octal-escape": 1,
-    "no-param-reassign": [1, { "props": true }],
+    "no-param-reassign": [1, { "props": false }],
     "no-proto": 1,
     "no-redeclare": [1, { "builtinGlobals": true }],
     "no-script-url": 1,
@@ -110,17 +109,9 @@
       1,
       {
         "vars": "all",
-        "args": "all",
+        "args": "after-used",
         "ignoreRestSiblings": false,
         "caughtErrors": "all"
-      }
-    ],
-    "no-use-before-define": [
-      1,
-      {
-        "functions": true,
-        "classes": true,
-        "variables": true
       }
     ],
     "array-bracket-newline": [1, "consistent"],
@@ -136,7 +127,7 @@
     "func-call-spacing": [1, "never"],
     "function-paren-newline": [1, "consistent"],
     "implicit-arrow-linebreak": [1, "beside"],
-    "indent": [1, 2],
+    "indent": [1, 2, { "SwitchCase": 1 }],
     "key-spacing": [
       1,
       {
@@ -186,7 +177,7 @@
     "quote-props": [1, "as-needed", { "unnecessary": true }],    
     "quotes": [1, "single"],    
     "semi": [1, "always", { "omitLastInOneLineBlock": false }],
-    "semi-spacing": [1, { "before": false, "after": false }],
+    "semi-spacing": [1, { "before": false, "after": true }],
     "semi-style": [1, "last"],
     "space-before-blocks": [1, "always"],
     "space-before-function-paren": [1, { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
