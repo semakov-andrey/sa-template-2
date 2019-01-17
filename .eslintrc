@@ -82,6 +82,7 @@
     "no-param-reassign": [1, { "props": false }],
     "no-proto": 1,
     "no-redeclare": [1, { "builtinGlobals": true }],
+    "no-return-assign": [1, "except-parens"],
     "no-script-url": 1,
     "no-self-assign": 1,
     "no-self-compare": 1,
