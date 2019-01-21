@@ -109,6 +109,7 @@ module.exports = webpackMerge(config, {
   devServer: {
     contentBase: path.resolve('../', dirs.development),
     compress: true,
+    disableHostCheck: true,
     https: configServer.secure,
     inline: true,
     lazy: false,
