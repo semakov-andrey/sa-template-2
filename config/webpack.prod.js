@@ -14,7 +14,9 @@ const dirs                      = packageJSON.config.directories;
 const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
 
-Object.keys(entries).forEach(key => entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])]);
+Object.keys(entries).forEach(key => {
+  entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])];
+});
 
 module.exports = webpackMerge(config, {
   entry: entries,
@@ -81,9 +83,6 @@ module.exports = webpackMerge(config, {
               },
               optipng: {
                 optimizationLevel: 7
-              },
-              webp: {
-                quality: 90
               },
               svgo: {
                 plugins: [
