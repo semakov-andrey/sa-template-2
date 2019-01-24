@@ -63,7 +63,7 @@ module.exports = webpackMerge(config, {
         ]
       },
       {
-        test: /content\\.*\.(jpg|png|gif|webp|svg)$/,
+        test: /content[\\\/].*\.(jpg|png|gif|webp|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -96,7 +96,7 @@ module.exports = webpackMerge(config, {
         ]
       },
       {
-        test: /svg\\.*\.svg$/,
+        test: /svg[\\\/].*\.svg$/,
         use: [
           {
             loader: 'svg-sprite-loader',
