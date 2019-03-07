@@ -33,7 +33,7 @@ module.exports = {
         }
       }]
     }, {
-      test: /content[\\\/].*\.mp4$/,
+      test: /content[\\/].*\.mp4$/,
       use: [{
         loader: 'file-loader',
         options: {
@@ -41,7 +41,7 @@ module.exports = {
         }
       }]
     }, {
-      test: /other[\\\/].*$/,
+      test: /other[\\/].*$/,
       use: [{
         loader: 'file-loader',
         options: {

@@ -9,11 +9,9 @@ const protocol                  = `http${configServer.secure ? 's' : ''}:`;
 
 const addresses = [`${protocol}//localhost:${configServer.port}`];
 Object.keys(ifaces).forEach(ifname => {
-  let alias = 0;
   ifaces[ifname].forEach(iface => {
     if ('IPv4' !== iface.family || iface.internal !== false) return;
     addresses.push(`${protocol}//${iface.address}:${configServer.port}`);
-    alias++;
   });
 });
 

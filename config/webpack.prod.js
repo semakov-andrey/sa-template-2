@@ -63,7 +63,7 @@ module.exports = webpackMerge(config, {
         ]
       },
       {
-        test: /content[\\\/].*\.(jpg|png|gif|webp|svg)$/,
+        test: /content[\\/].*\.(jpg|png|gif|webp|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -86,9 +86,9 @@ module.exports = webpackMerge(config, {
               },
               svgo: {
                 plugins: [
-                  {removeViewBox: false},
-                  {convertColors: {shorthex: true}},
-                  {removeEmptyAttrs: false}
+                  { removeViewBox: false },
+                  { convertColors: { shorthex: true } },
+                  { removeEmptyAttrs: false }
                 ]
               }
             }
@@ -96,7 +96,7 @@ module.exports = webpackMerge(config, {
         ]
       },
       {
-        test: /svg[\\\/].*\.svg$/,
+        test: /svg[\\/].*\.svg$/,
         use: [
           {
             loader: 'svg-sprite-loader',
@@ -110,9 +110,9 @@ module.exports = webpackMerge(config, {
             loader: 'svgo-loader',
             options: {
               plugins: [
-                {removeViewBox: false},
-                {convertColors: {shorthex: true}},
-                {removeEmptyAttrs: false}
+                { removeViewBox: false },
+                { convertColors: { shorthex: true } },
+                { removeEmptyAttrs: false }
               ]
             }
           }
