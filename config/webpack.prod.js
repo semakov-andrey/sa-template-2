@@ -82,7 +82,7 @@ module.exports = webpackMerge(config, {
                 interlaced: false
               },
               optipng: {
-                optimizationLevel: 7
+                optimizationLevel: 4
               },
               svgo: {
                 plugins: [
