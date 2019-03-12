@@ -81,8 +81,9 @@ module.exports = webpackMerge(config, {
               gifsicle: {
                 interlaced: false
               },
-              optipng: {
-                optimizationLevel: 7
+              pngquant: {
+                quality: 100,
+                strip: true
               },
               svgo: {
                 plugins: [
