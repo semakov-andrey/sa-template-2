@@ -132,7 +132,12 @@ module.exports = webpackMerge(config, {
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
-        test: /\.js$/
+        test: /\.js$/,
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
       }),
       new PostCSSAssetsPlugin({
         test: /\.css$/,
