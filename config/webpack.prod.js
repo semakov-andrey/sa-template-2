@@ -153,7 +153,9 @@ module.exports = webpackMerge(config, {
               },
               minifyFontValues: {
                 removeQuotes: false
-              }
+              },
+              reduceIdents: false,
+              zindex: false
             }]
           })
         ]
