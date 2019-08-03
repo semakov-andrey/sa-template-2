@@ -1,5 +1,3 @@
-'use strict';
-
 const dirs                      = require('../package.json').config.directories;
 const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 
@@ -21,7 +19,7 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env']
+          presets: [ '@babel/preset-env' ]
         }
       }]
     }, {

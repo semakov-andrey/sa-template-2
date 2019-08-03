@@ -1,5 +1,3 @@
-'use strict';
-
 const dirs           	          = require('./package.json').config.directories;
 const config                    = require('./config/webpack.prod.js');
 const webpack                   = require('webpack');
@@ -19,11 +17,11 @@ const statsOptions = {
   version: false
 };
 if (fs.existsSync(dirs.production)) del.sync(`${dirs.production}/**/*`);
-compiler.hooks.compile.tap('compile', () => console.log('Building frontend...'));
+compiler.hooks.compile.tap('compile', () => console.info('Building frontend...'));
 compiler.run((error, stats) => {
   if (!error) {
-    console.log('Compiled successfully.');
-    console.log(stats.toString(statsOptions));
+    console.info('Compiled successfully.');
+    console.info(stats.toString(statsOptions));
   } else {
     console.error(error.stack || error);
     if (error.details) {

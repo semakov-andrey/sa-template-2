@@ -116,7 +116,7 @@
       }
     ],
     "array-bracket-newline": [1, "consistent"],
-    "array-bracket-spacing": [1, "never"],
+    "array-bracket-spacing": [1, "always", { "objectsInArrays": false, "arraysInArrays": false }],
     "array-element-newline": [1, "consistent"],
     "brace-style": [1, "1tbs"],
     "camelcase": [1, { "properties": "always", "ignoreDestructuring": false }],
@@ -129,6 +129,7 @@
     "function-paren-newline": [1, "consistent"],
     "implicit-arrow-linebreak": [1, "beside"],
     "indent": [1, 2, { "SwitchCase": 1 }],
+    "jsx-quotes": [1, "prefer-double"],
     "key-spacing": [
       1,
       {

@@ -1,5 +1,3 @@
-'use strict';
-
 const packageJSON               = require('../package.json');
 const config                    = require('./webpack.common.js');
 const webpackMerge              = require('webpack-merge');
@@ -7,13 +5,12 @@ const path                      = require('path');
 const autoprefixer              = require('autoprefixer');
 const MiniCssExtractPlugin      = require('mini-css-extract-plugin');
 const dirs                      = packageJSON.config.directories;
-const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
 const configServer           	  = packageJSON.config.devServer;
 const protocol                  = `http${configServer.secure ? 's' : ''}:`;
 
 Object.keys(entries).forEach((key, index) => {
-  entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])];
+  entries[key] = [ path.resolve(dirs.source, dirs.files.js, entries[key]) ];
   if (!index) {
     entries[key].unshift(`webpack-dev-server/client?${protocol}//localhost:${configServer.port}`);
   }
@@ -66,9 +63,7 @@ module.exports = webpackMerge(config, {
             options: {
               sourceMap: true,
               plugins: () => [
-                autoprefixer({
-                  browsers: browserList
-                })
+                autoprefixer()
               ]
             }
           },

@@ -1,5 +1,3 @@
-'use strict';
-
 const packageJSON               = require('../package.json');
 const config                    = require('./webpack.common.js');
 const webpackMerge              = require('webpack-merge');
@@ -11,11 +9,10 @@ const cssnano                   = require('cssnano');
 const UglifyJsPlugin            = require('uglifyjs-webpack-plugin');
 const SpriteLoaderPlugin        = require('svg-sprite-loader/plugin');
 const dirs                      = packageJSON.config.directories;
-const browserList               = packageJSON.config.browsers;
 const entries                   = packageJSON.config.entries;
 
 Object.keys(entries).forEach(key => {
-  entries[key] = [path.resolve(dirs.source, dirs.files.js, entries[key])];
+  entries[key] = [ path.resolve(dirs.source, dirs.files.js, entries[key]) ];
 });
 
 module.exports = webpackMerge(config, {
@@ -143,11 +140,9 @@ module.exports = webpackMerge(config, {
         test: /\.css$/,
         log: false,
         plugins: [
-          autoprefixer({
-            browsers: browserList
-          }),
+          autoprefixer(),
           cssnano({
-            preset: ['default', {
+            preset: [ 'default', {
               discardComments: {
                 removeAll: true
               },
