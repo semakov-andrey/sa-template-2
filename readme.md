@@ -1,5 +1,5 @@
 # Front-End template. #
-###### Шаблон для вёрстки сайта на nodeJS 11 и webpack 4. ######
+###### Шаблон для вёрстки сайта на nodeJS 12 и webpack 4. ######
 
 ### Установка ###
 - `npm init --yes`  
