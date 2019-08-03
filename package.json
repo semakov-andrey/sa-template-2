@@ -16,7 +16,7 @@
   "main": "install.js",
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:semakov_andrey/sa-template-2.git"
+    "url": "git@github.com:semakov-andrey/sa-template-2.git"
   },
   "author": "Semakov Andrey <semakov.andrey.web@yandex.ru>",
   "license": "ISC",
