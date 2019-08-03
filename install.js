@@ -40,6 +40,7 @@ const scripts = {
   'lint-js': 'eslint src/**/*.js --fix'
 };
 const json = {
+  browserslist: templateJSON.browserslist,
   ...packageJSON,
   scripts: {
     ...packageJSON.scripts,
